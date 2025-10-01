@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DigiAgency - Digital Marketing Agency Website
+
+A modern, responsive **Next.js 15.5.4** website for a digital marketing agency. Built with **Bootstrap 5**, **React Icons**, and **Next.js App Router**, this project includes a **dark/light mode toggle**, **skeleton loading effects**, and a **fully responsive UI**.  
+
+---
+
+## Table of Contents
+
+- [Demo](#demo)  
+- [Features](#features)  
+- [Technologies Used](#technologies-used)  
+- [Getting Started](#getting-started)  
+- [Project Structure](#project-structure)  
+- [Customization](#customization)  
+- [Screenshots](#screenshots)  
+- [License](#license)  
+
+---
+
+## Demo
+
+![Homepage Screenshot](./public/hero-illustration.jpg)  
+*(Replace with actual deployed screenshot or URL)*
+
+---
+
+## Features
+
+- **Dark/Light Mode** toggle with smooth transitions.  
+- Responsive **Navbar**, **Hero**, **Services**, **Portfolio**, and **Testimonials** sections.  
+- **Skeleton loading effect** for Services cards to improve UX during content load.  
+- **Dynamic Portfolio** section with hover animations.  
+- Fully responsive layout using **Bootstrap Grid**.  
+- Gradient text for headings for modern UI look.  
+
+---
+
+## Technologies Used
+
+- **Next.js 15.5.4** (App Router)  
+- **React.js**  
+- **Bootstrap 5**  
+- **React Icons**  
+- **CSS3 / Flexbox / Grid**  
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js v18 or later  
+- npm or yarn  
+
+### Installation
 
 ```bash
-npm run dev
+# Clone the repository
+git clone https://github.com/yourusername/digiagency.git
+
+# Navigate to the project directory
+cd digiagency
+
+# Install dependencies
+npm install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+yarn install
