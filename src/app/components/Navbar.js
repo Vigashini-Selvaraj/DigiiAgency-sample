@@ -4,19 +4,25 @@ import { ThemeContext } from "../layout"; // adjust path if needed
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
-  const { darkMode, setDarkMode } = useContext(ThemeContext); // 🔥 use shared context
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleNavbar = () => setIsCollapsed(!isCollapsed);
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+    <nav
+  className="navbar navbar-expand-lg sticky-top shadow-sm py-3"
+  style={{
+    background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+    zIndex: 9999, // high enough to stay on top
+  }}
+>
+
       <div className="container">
         <a className="navbar-brand fw-bold text-white" href="#">
           DigiAgency
         </a>
 
-        {/* Hamburger */}
         <button
           className="navbar-toggler"
           type="button"
@@ -28,7 +34,6 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navbar links */}
         <div
           className={`collapse navbar-collapse ${!isCollapsed ? "show" : ""}`}
           id="navbarNav"
@@ -52,7 +57,7 @@ export default function Navbar() {
             <li className="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button
                 className="btn btn-sm btn-toggle"
-                onClick={() => setDarkMode(!darkMode)} // 🔥 updates global theme
+                onClick={() => setDarkMode(!darkMode)}
               >
                 {darkMode ? "Light Mode" : "Dark Mode"}
               </button>
@@ -62,9 +67,6 @@ export default function Navbar() {
       </div>
 
       <style jsx>{`
-        nav {
-          background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-        }
         .nav-link {
           font-weight: 500;
           margin-right: 1rem;
@@ -89,4 +91,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

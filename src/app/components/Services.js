@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Services({ theme }) {
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const services = [
     {
@@ -34,16 +35,20 @@ export default function Services({ theme }) {
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 300);
-    return () => clearTimeout(timer);
+    const loadTimer = setTimeout(() => setLoading(false), 1500); // skeleton shows 1.5s
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(loadTimer);
+    };
   }, []);
 
   return (
-    <section className={`py-5 ${theme === "dark" ? "dark-bg-soft" : "light-bg"}`}>
+    <section className={`py-5 ${theme === "dark" ? "dark-bg" : "light-bg"}`}>
       <div className="container">
         {/* Section Title */}
         <div className="text-center mb-5">
           <h2 className="fw-bold mb-2">
-            <span style={{ color: theme === "dark" ? "#ffffff" : "#212529" }}>Our </span>
+            <span>Our </span>
             <span className="gradient-text">Services</span>
           </h2>
           <p style={{ color: theme === "dark" ? "#ffffff" : "#6c757d" }}>
@@ -61,15 +66,32 @@ export default function Services({ theme }) {
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <div className="card h-100 text-center p-4 shadow-sm service-card">
-                <div
-                  className="icon-wrapper mb-3"
-                  style={{ background: service.gradient }}
-                >
-                  {service.icon}
-                </div>
-                <h5 className="card-title fw-bold">{service.title}</h5>
-                <p className="card-text">{service.desc}</p>
+              <div
+                className="card h-100 text-center p-4 shadow-sm service-card"
+                style={{
+                  background: "#ffffff", // always white
+                  color: "#212529", // text dark
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {loading ? (
+                  <div className="skeleton">
+                    <div className="skeleton-icon"></div>
+                    <div className="skeleton-text skeleton-title"></div>
+                    <div className="skeleton-text skeleton-desc"></div>
+                  </div>
+                ) : (
+                  <>
+                    <div
+                      className="icon-wrapper mb-3"
+                      style={{ background: service.gradient }}
+                    >
+                      {service.icon}
+                    </div>
+                    <h5 className="card-title fw-bold">{service.title}</h5>
+                    <p className="card-text">{service.desc}</p>
+                  </>
+                )}
               </div>
             </div>
           ))}
@@ -77,14 +99,6 @@ export default function Services({ theme }) {
       </div>
 
       <style jsx>{`
-        /* Section background for dark/light */
-        .dark-bg-soft {
-          background-color: #1a1a1a; /* dark section bg */
-        }
-        .light-bg {
-          background-color: #f8f9fa;
-        }
-
         /* Card wrapper animation */
         .service-card-wrapper {
           opacity: 0;
@@ -96,12 +110,15 @@ export default function Services({ theme }) {
           transform: translateY(0);
         }
 
+        .gradient-text {
+          background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
         /* Card styling */
         .service-card {
-          background: #ffffff; /* cards stay white */
-          color: #212529;
           border-radius: 20px;
-          transition: transform 0.4s, box-shadow 0.4s;
         }
         .service-card:hover {
           transform: translateY(-10px) scale(1.03);
@@ -131,14 +148,56 @@ export default function Services({ theme }) {
           height: 40px;
         }
 
-        .gradient-text {
-          background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        /* Skeleton loading */
+        .skeleton {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .skeleton-icon {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: #e0e0e0;
+          animation: pulse 1.5s infinite;
+        }
+        .skeleton-text {
+          height: 15px;
+          width: 80%;
+          border-radius: 6px;
+          background: #e0e0e0;
+          animation: pulse 1.5s infinite;
+        }
+        .skeleton-title {
+          height: 20px;
+          width: 60%;
+        }
+        .skeleton-desc {
+          height: 14px;
+          width: 80%;
+        }
+
+        @keyframes pulse {
+          0% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.4;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
+        .dark-bg {
+          background-color: #121212;
+        }
+        .light-bg {
+          background-color: #f8f9fa;
         }
       `}</style>
     </section>
   );
 }
-
 

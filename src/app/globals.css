@@ -1,6 +1,25 @@
 /* ===========================
    LIGHT THEME (DEFAULT)
 =========================== */
+/* Prevent horizontal scroll globally */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999; /* above content */
+}
+
+/* Optional: box-sizing for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --bg-color: #f8f9fa; /* page background */
   --text-color: #000; /* main text */
